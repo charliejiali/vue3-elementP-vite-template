@@ -1,7 +1,4 @@
-import axios from 'axios'
-import store from '@/store'
-import { AxiosConfigTy, AxiosReqTy, ObjTy } from '~/common'
-import { getToken } from '@/utils/auth'
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 
 // create an axios instance
 const service = axios.create({
@@ -12,15 +9,14 @@ const service = axios.create({
 
 // request interceptor
 service.interceptors.request.use(
-  (config: AxiosReqTy) => {
+  (config: InternalAxiosRequestConfig) => {
     // do something before request is sent
-
-    if (store.getters.token) {
+    if (true) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
       if (config.headers) {
-        config.headers['X-Token'] = getToken() as string
+        config.headers['X-Token'] = 'vue3-elementP-vite-template-token'
       }
     }
     return config
@@ -44,8 +40,8 @@ service.interceptors.response.use(
      * Here is just an example
      * You can also judge the status by HTTP Status Code
      */
-  (response: any) => {
-    const res: {code: number, message: string} = response.data
+  (response: AxiosResponse) => {
+    const res = response.data
 
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 200) {
@@ -55,19 +51,6 @@ service.interceptors.response.use(
         duration: 5 * 1000
       })
 
-      // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        // to re-login
-        ElMessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
-          confirmButtonText: 'Re-Login',
-          cancelButtonText: 'Cancel',
-          type: 'warning'
-        }).then(() => {
-          store.dispatch('user/resetToken').then(() => {
-            location.reload()
-          })
-        })
-      }
       return Promise.reject(new Error(res.message || 'Error'))
     } else {
       return res

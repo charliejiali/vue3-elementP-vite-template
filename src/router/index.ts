@@ -1,7 +1,6 @@
-import { createRouter, createWebHashHistory, createWebHistory, Router } from 'vue-router'
+import { createRouter, createWebHistory, Router } from 'vue-router'
 import Layout from '@/layout/index.vue'
 import { RouterTy } from '~/router'
-import store from '@/store'
 
 import nestedRouter from './modules/nested'
 
@@ -53,19 +52,6 @@ export const constantRoutes: RouterTy = [
       }
     ]
   },
-  {
-    path: '/world-map',
-    component: Layout,
-    name: 'WorldMap',
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/world-map/index.vue'),
-        name: 'WorldMapIndex',
-        meta: { title: 'World Map', icon: 'international' }
-      }
-    ]
-  },
   nestedRouter,
   {
     path: '/error',
@@ -90,7 +76,9 @@ export const constantRoutes: RouterTy = [
         meta: { title: '404', noCache: true }
       }
     ]
-  },
+  }
+]
+export const asyncRoutes: RouterTy = [
   { path: '/:pathMatch(.*)', redirect: '/404', hidden: true }
 ]
 

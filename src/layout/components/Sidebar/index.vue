@@ -22,14 +22,21 @@
 import Logo from './Logo.vue'
 import SidebarItem from './SidebarItem.vue'
 import variables from '@/styles/variables.module.scss'
+import { useSettingsStore } from '@/stores/settings'
+import { useAppStore } from '@/stores/app'
 
 const route = useRoute()
 const router = useRouter()
-const { state, getters } = useStore()
+
+const settingsStore = useSettingsStore()
+const appStore = useAppStore()
+const sidebarState = computed(() => {
+  return appStore.sidebar
+})
 
 const data = reactive({
   showLogo: computed(() => {
-    return state.settings.sidebarLogo
+    return settingsStore.sidebarLogo
   }),
   permission_routes: computed(() => {
     return router.options.routes
@@ -43,7 +50,7 @@ const data = reactive({
     return path
   }),
   isCollapse: computed(() => {
-    return !state.app.sidebar.opened
+    return !sidebarState.value.opened
   })
 })
 

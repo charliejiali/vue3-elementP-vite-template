@@ -1,7 +1,7 @@
 const settings = {
-  title: 'vue3-elementP-vite',
+  title: 'vue3-elementP-vite-template',
   fixedHeader: false,
-  sidebarLogo: true
+  sidebarLogo: false
 }
 
 export default settings
