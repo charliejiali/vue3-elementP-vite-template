@@ -23,9 +23,8 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
 
   return {
     server: {
-      host: '0,0,0,0',
+      host: 'localhost',
       port,
-      open: true,
       cors: true,
       proxy: {
         [process.env.VITE_MOCK_API as string]: {

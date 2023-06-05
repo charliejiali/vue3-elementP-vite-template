@@ -1,5 +1,4 @@
-import { ObjTy } from '../types/common'
-import Mock from 'mockjs'
+import * as Mock from 'mockjs'
 
 const List: any[] = []
 const count = 100
@@ -32,7 +31,7 @@ export default [
   {
     url: '/article/list',
     method: 'get',
-    response: (config: { query: ObjTy }) => {
+    response: (config) => {
       const { importance, type, title, page = 1, limit = 20, sort } = config.query
 
       let mockList = List.filter(item => {
