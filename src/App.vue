@@ -7,6 +7,6 @@
 <script setup>
 // import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 // const locale = zhCn
-import en from 'element-plus/lib/locale/lang/en'
+import en from 'element-plus/es/locale/lang/en'
 const locale = en
 </script>
