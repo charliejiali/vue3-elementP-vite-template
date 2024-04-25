@@ -6,5 +6,5 @@
 
 <script setup lang="ts">
 const name = ref('')
-name.value = nestedConfig.menu2Name
+name.value = window.dict.settings.menu2Name
 </script>

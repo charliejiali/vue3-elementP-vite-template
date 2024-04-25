@@ -22,6 +22,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
 
   return {
+    base: '/auth/',
     server: {
       host: 'localhost',
       port,
@@ -58,7 +59,6 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         `
       }),
       createHtmlPlugin({
-        viteNext: true,
         minify: isBuild,
         /**
          * 在这里写entry后，你将不需要在`index.html`内添加 script 标签，原有标签需要删除

@@ -5,5 +5,5 @@
     "moduleResolution": "node"
   },
   "include": [
-    "vite.config.mts", "src/settings.ts"]
+    "vite.config.ts", "src/settings.ts"]
 }

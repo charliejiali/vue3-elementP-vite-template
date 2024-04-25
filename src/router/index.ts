@@ -83,7 +83,7 @@ export const asyncRoutes: RouterTy = [
 ]
 
 const makeRouter = () => createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/auth/'),
   scrollBehavior: () => ({ top: 0 }),
   routes: constantRoutes
 })
