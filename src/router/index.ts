@@ -1,6 +1,7 @@
-import { createRouter, createWebHistory, Router } from 'vue-router'
+import type { Router } from 'vue-router'
+import type { RouterTy } from '~/router'
 import Layout from '@/layout/index.vue'
-import { RouterTy } from '~/router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import nestedRouter from './modules/nested'
 
@@ -12,19 +13,19 @@ export const constantRoutes: RouterTy = [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect')
-      }
-    ]
+        component: () => import('@/views/redirect'),
+      },
+    ],
   },
   {
     path: '/404',
     component: () => import('@/views/error-page/404.vue'),
-    hidden: true
+    hidden: true,
   },
   {
     path: '/401',
     component: () => import('@/views/error-page/401.vue'),
-    hidden: true
+    hidden: true,
   },
   {
     path: '/',
@@ -35,9 +36,9 @@ export const constantRoutes: RouterTy = [
         path: 'dashboard',
         name: 'Dashboard',
         component: () => import('@/views/dashboard/index.vue'),
-        meta: { title: 'Dashboard', icon: 'dashboard' }
-      }
-    ]
+        meta: { title: 'Dashboard', icon: 'dashboard' },
+      },
+    ],
   },
   {
     path: '/table',
@@ -48,9 +49,9 @@ export const constantRoutes: RouterTy = [
         path: '',
         component: () => import('@/views/table/index.vue'),
         name: 'TableIndex',
-        meta: { title: 'Table', icon: 'table' }
-      }
-    ]
+        meta: { title: 'Table', icon: 'table' },
+      },
+    ],
   },
   nestedRouter,
   {
@@ -60,33 +61,35 @@ export const constantRoutes: RouterTy = [
     name: 'ErrorPages',
     meta: {
       title: 'Error Pages',
-      icon: '404'
+      icon: '404',
     },
     children: [
       {
         path: '401',
         component: () => import('@/views/error-page/401.vue'),
         name: 'Page401',
-        meta: { title: '401', noCache: true }
+        meta: { title: '401', noCache: true },
       },
       {
         path: '404',
         component: () => import('@/views/error-page/404.vue'),
         name: 'Page404',
-        meta: { title: '404', noCache: true }
-      }
-    ]
-  }
+        meta: { title: '404', noCache: true },
+      },
+    ],
+  },
 ]
 export const asyncRoutes: RouterTy = [
-  { path: '/:pathMatch(.*)', redirect: '/404', hidden: true }
+  { path: '/:pathMatch(.*)', redirect: '/404', hidden: true },
 ]
 
-const makeRouter = () => createRouter({
-  history: createWebHistory('/auth/'),
-  scrollBehavior: () => ({ top: 0 }),
-  routes: constantRoutes
-})
+function makeRouter() {
+  return createRouter({
+    history: createWebHistory('/auth/'),
+    scrollBehavior: () => ({ top: 0 }),
+    routes: constantRoutes,
+  })
+}
 
 const router: Router = makeRouter()
 

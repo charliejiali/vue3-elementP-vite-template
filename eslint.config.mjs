@@ -5,4 +5,10 @@ export default antfu({
     'no-console': 'off',
     'node/prefer-global/process': 'off'
   },
+  ignores: [
+    'build/*.js',
+    'src/assets',
+    'public',
+    'dist'
+  ]
 })

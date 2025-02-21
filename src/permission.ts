@@ -1,11 +1,11 @@
-import router from './router'
-import NProgress from 'nprogress' // progress bar
-import 'nprogress/nprogress.css' // progress bar style
 import getPageTitle from '@/utils/get-page-title'
+import NProgress from 'nprogress' // progress bar
+import router from './router'
+import 'nprogress/nprogress.css' // progress bar style
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-router.beforeEach(async(to: any, from, next: any) => {
+router.beforeEach(async (to: any, from, next: any) => {
   // start progress bar
   NProgress.start()
 
